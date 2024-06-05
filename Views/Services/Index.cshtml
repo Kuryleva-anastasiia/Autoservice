@@ -1,0 +1,77 @@
+﻿@model IEnumerable<Autoservice.Models.Services>
+
+<div class="container login">
+
+    <h1 class="form-title">Каталог</h1>
+
+    @if (User.IsInRole("admin"))
+    {
+        <a href="~/Services/Create" class="admin__btn">Добавить услугу</a>
+    }
+    <form method="get">
+
+        <div>
+            <div class="form-group d-inline-block">
+                <label class="control-label">Сортировка: </label>
+                <select class="form-control mr-30" name="sort" asp-items="@ViewBag.sort"></select>
+            </div>
+            <div class="form-group d-inline-block">
+                <label class="control-label">Поиск: </label>
+                <input class="form-control mr-30" name="name" value="@ViewBag.name" />
+            </div>
+
+            <div class="form-group d-inline-block">
+                <label class="control-label">Категория: </label>
+                <select class="form-control mr-30" name="category" asp-items="@ViewBag.category"></select>
+            </div>
+
+            <input type="submit" value="Фильтр" class="btn btn-primary" />
+        </div>
+    </form>
+
+    <div class="catalog">
+
+        <h3 class="form-title" style="width: 100%; font-size: 30px;">Услуги</h3>
+        @foreach (var item in Model)
+        {
+            string id = item.id.ToString();
+            string name = item.name.ToString();
+            <div class="catalog__card" id="@(id)">
+
+                <div class="products-card__content">
+                    <h4 class="catalog__title products-card__title">
+                        @Html.DisplayFor(modelItem => item.name)
+                    </h4>
+
+
+                    <span class="catalog__price products-card__price">@Html.DisplayFor(modelItem => item.price) &#8381;</span>
+                    <span class="catalog__desc">@Html.DisplayFor(modelItem => item.description)</span>
+
+                    <div class="products-card__wrap-btn">
+
+                        @if (User.Identity != null && User.Identity.IsAuthenticated == true)
+                        {
+                            <a href="~/CartAdd/@(User.FindFirst("ID").Value.ToString())/@(item.id)">
+                                <button class="button nomrg catalog__btn products-card__btn">Заказать</button>
+                            </a>
+                        }
+                        else
+                        {
+                            <a href="~/SignInCheckForAvatar">
+                                <button class="button catalog__btn products-card__btn">Заказать</button>
+                            </a>
+                        }
+
+                    </div>
+                </div>
+                <!-- /.products-card__content -->
+            </div>
+            <!-- /.products-card products__card -->
+        }
+        
+    </div>
+</div>
+@*<a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                <a asp-action="Delete" asp-route-id="@item.id">Delete</a>*@
+

@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Autoservice.Models.Categories>
+
+@{
+    ViewData["Title"] = "Главная";
+}
+
+<div class="container">
+    <div class="service-slider">
+        <div class="swiper-container service-slider__container">
+            <!-- Additional required wrapper -->
+            <div class="swiper-wrapper service-slider__wrapper">
+                <div class="swiper-slide service-slider__slide">
+                    <img src="../img/sliders/slide-3.jpg"
+                         class="service-slider__img"
+                         alt="service photo" />
+                </div>
+                <div class="swiper-slide service-slider__slide">
+                    <img src="../img/sliders/slide-1.jpg"
+                         class="service-slider__img"
+                         alt="service photo" />
+                </div>
+                <div class="swiper-slide service-slider__slide">
+                    <img src="../img/sliders/slide-2.jpg"
+                         class="service-slider__img"
+                         alt="service photo" />
+                </div>
+                
+                <div class="swiper-slide service-slider__slide">
+                    <img src="../img/sliders/slide-5.jpg"
+                         class="service-slider__img"
+                         alt="service photo" />
+                </div>
+            </div>
+            <!-- navigation buttons -->
+            <button class="service-slider__button service-slider__button_prev"></button>
+            <button class="service-slider__button service-slider__button_next"></button>
+        </div>
+        <!-- /.swiper-container -->
+    </div>
+    <!-- /.service-slider -->
+    <section class="activities">
+        <div class="container">
+            <h2 class="activities__title">Услуги</h2>
+            <div class="activities-wrapper">
+                @foreach (var item in Model)
+                {
+                    <div class="card activities__card"
+                         data-aos="flip-left"
+                         data-aos-easing="ease-out-cubic"
+                         data-aos-duration="2000">
+                        <img src="../img/activities/activity-@(item.id).jpg"
+                             alt="Activity: The curious corner of chamarel"
+                             class="card__img" />
+                        <h3 class="card__name">@item.name.ToString()</h3>
+                        <a href="~/Services/Index">
+                            <button class="card__button">Выбрать</button>
+                        </a>
+                    </div>
+                    <!-- /.card activities__card -->
+                }
+                
+                
+            </div>
+            <!-- /.activities-wrapper -->
+        </div>
+        <!-- /.container -->
+    </section>
+</div>

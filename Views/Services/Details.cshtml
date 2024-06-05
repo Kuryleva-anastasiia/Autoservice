@@ -1,0 +1,52 @@
+﻿@model Autoservice.Models.Services
+
+@{
+    ViewData["Title"] = "Details";
+
+    string id = Model.id.ToString();
+    string name = Model.name.ToString();
+}
+
+
+<section class="login container">
+    @*@if (User.IsInRole("admin"))*@
+    @*{*@
+    <a style="display: inline-block;" href="~/Services/Edit/@Model.id" class="admin__btn">Редактировать</a>
+
+    <a style="display: inline-block;" href="~/Services/Delete/@Model.id" class="admin__btn">Удалить</a>
+    @*}*@
+    <div class="book">
+
+        
+        <div class="book__wrap-content">
+            <h1 class="form-title">@Html.DisplayFor(m => m.name)</h1>
+
+            <strong>
+                    <span class="book__price">@Html.DisplayFor(m => m.price) &#8381;</span>
+            </strong>
+
+            <p><strong class="book__feature">@Html.DisplayNameFor(m => m.category_id):</strong><span>@Html.DisplayFor(m => m.Categories.name)</span></p>
+
+
+            @*@if (User.Identity.IsAuthenticated)
+            {
+                <a href="~/CartAdd/@(User.FindFirst("ID").Value.ToString())/@(Model.id)/@(Model.status)">
+                    <button class="button book__btn">В корзину</button>
+                </a>
+            }
+            else
+            {
+                <a href="~/Users/LoginNotify">
+                    <button class="button book__btn">В корзину</button>
+                </a>
+            }*@
+
+        </div>
+
+
+    </div>
+    <div class="book__description-wrap">
+        <strong class="book__feature">@Html.DisplayNameFor(m => m.description)</strong>
+        <p class="book__description">@Html.DisplayFor(m => m.description)</p>
+    </div>
+</section>

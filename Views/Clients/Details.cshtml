@@ -1,0 +1,108 @@
+﻿@model Autoservice.Models.Clients
+
+@{
+    var id = User.FindFirst("ID").Value;
+    ViewData["Title"] = "Личный кабинет";
+}
+<section class="login container">
+
+    <h1 class="form-title">Личный кабинет</h1>
+    @*<a href="~/Carts/Details/@(id)" class="cart-string">Корзина (@count)</a>*@
+
+    <div>
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <input type="hidden" asp-for="id" />
+            <div class="form-group">
+                <label asp-for="login" class="control-label"></label>
+                <input asp-for="login" class="form-control" placeholder="8xxxxxxxxxx" minlength="11" maxlength="11" value="@(Model.login)" required />
+                <span asp-validation-for="login" class="text-danger">Пример: 89998887766</span>
+            </div>
+            <div class="form-group">
+                <label asp-for="password" class="control-label" style="display: none;"></label>
+                <input asp-for="password" type="hidden" value="@(Model.password)" class="form-control" />
+                <span asp-validation-for="password" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <label asp-for="name" class="control-label"></label>
+                <input asp-for="name" class="form-control" value="@(Model.name)" />
+                <span asp-validation-for="name" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">
+                <a href="~/UpdateUser"><input type="submit" value="Сохранить" class="btn btn-primary" /></a>
+            </div>
+        </form>
+
+    </div>
+    <hr />
+    <h4 class="form-title">Заказы</h4>
+
+    @if (Model.Orders != null)
+    {
+    var orders = Model.Orders.Where(x => x.client_id == Convert.ToInt32(id));
+
+
+        @if (orders.Count() != 0)
+        {
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>
+                            <strong>Номер заказа</strong>
+                        </th>
+                        <th>
+                            <strong>Дата оформления</strong>
+                        </th>
+                        @*<th>
+                            <strong>Сотрудник</strong>
+                        </th>*@
+                        <th>
+                            <strong>Сумма</strong>
+                        </th>
+                        <th>
+                            <strong>Статус</strong>
+                        </th>
+                        <th>
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach (var c in orders)
+                    {
+                        <tr>
+                            <td>
+                                @c.id
+                            </td>
+                            <td>
+                                @c.date
+                            </td>
+                            @*<td>
+                                @c.Employees.name
+                            </td>*@
+                            <td>
+                                @c.sum
+                            </td>
+                            <td>
+                                @c.status
+                            </td>
+                            <td>
+                                <a href="~/Order_service/Details/@c.id">Услуги</a>
+                            </td>
+                        </tr>
+                    }
+                </tbody>
+            </table>
+        }
+        else
+        {
+
+        }
+
+    }
+    
+
+
+    <hr />
+</section>

@@ -1,0 +1,208 @@
+﻿
+
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Шрифты -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link href="https://fonts.googleapis.com/css2?family=Open+Sans:wght@400;600;700&family=Roboto+Condensed:wght@700&family=Roboto:wght@500&display=swap"
+          rel="stylesheet" />
+    <link rel="stylesheet" href="~/css/jquery.fancybox.css" />
+    <!-- Слайдер  -->
+    <link rel="stylesheet" href="~/css/swiper-bundle.min.css" />
+    <!-- <link rel="stylesheet" href="css/grid.min.css" /> -->
+    <!-- Иконочный шрифт -->
+    <link rel="stylesheet" href="~/css/iconsfont.min.css" />
+    <!-- Стили  -->
+    <link rel="stylesheet" href="~/css/style.css" />
+    <!-- favicon -->
+    <link rel="shortcut icon" href="~/favicon.ico" type="image/x-icon" />
+    <link rel="icon" href="~/img/favicon.ico" type="image/x-icon" />
+    <title>Autoservice</title>
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <div class="header-wrap">
+                <a href="~/Home/Index" class="logo header-wrap__logo">
+                    <img src="~/img/logo.png"
+                         alt="Логотип: Autoservice"
+                         class="header-wrap__img" />
+                </a>
+                <div class="header-wrap__nav-wrap">
+                    <ul class="nav header-wrap__nav">
+                        @* <li class="nav__item">
+                        <a href="~/Home/Index#sale" class="nav__link">Распродажа</a>
+                        </li>*@
+                        <li class="nav__item">
+                            <a href="~/Home/Index" class="nav__link">Главная</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="~/Home/Company" class="nav__link">О нас</a>
+                        </li>
+                        <li class="nav__item">
+                            <a href="~/Services/Index" class="nav__link">Услуги</a>
+                        </li>
+                        @if (User.Identity.IsAuthenticated)
+                        {
+                            <li class="nav__item">
+                                <a href="~/Cart/Details/@(User.FindFirst("ID").Value)" class="nav__link">Корзина</a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li class="nav__item">
+                                <a href="~/Clients/LoginNotify" class="nav__link">Корзина</a>
+                            </li>
+                        }
+
+                    </ul>
+
+                    <a action="get" href="~/SignInCheckForAvatar">
+                        <img src="~/img/avatar.png" alt="Avatar" class="header-wrap__avatar">
+                    </a>
+                </div>
+                <!-- /.header-wrap__nav-wrap -->
+                <button class="menu-btn header-wrap__menu-btn">
+                    <span class="menu-btn__line menu-btn__line_top"></span>
+                    <span class="menu-btn__line menu-btn__line_middle"></span>
+                    <span class="menu-btn__line menu-btn__line_bottom"></span>
+                </button>
+                <!-- /.menu-btn -->
+            </div>
+            <!-- /.header-wrap -->
+        </div>
+        <!-- /.container -->
+    </header>
+
+    @RenderBody()
+
+    <footer class="footer">
+        <div class="container">
+            <div class="footer__wrap">
+                <div class="footer__contacts">
+                    <img src="~/img/logoFooter.png"
+                         alt="Logotype: Ehya"
+                         class="logo footer__logo" />
+                    <span class="footer__description">
+                        Мы работаем ежедневно
+                        <br />с 9:00 до 21:00
+                        <br />+79119112233
+                        <br />Санкт-Петербург
+                    </span>
+                    <div class="footer__social-networks">
+                        <a style="text-decoration: none;" href="https://github.com/Kuryleva-anastasiia/tour-plan" target="_blank">
+                            <i class="footer__icon fab fa-github"></i>
+                        </a>
+                        <a style="text-decoration: none;" href="https://vk.com/n_a_s_t_u_h_a_tut" target="_blank">
+                            <i class="footer__icon fab fa-vk"></i>
+                        </a>
+                        <a style="text-decoration: none;" href="https://t.me/Web_anastasia" target="_blank">
+                            <i class="footer__icon fab fa-telegram"></i>
+                        </a>
+                    </div>
+                </div>
+                <!-- /.footer__contacts -->
+                @*<div class="footer__products">
+                <h4 class="footer__title">Продукт</h4>
+                <ul class="footer__list">
+                <li class="footer__item">
+                <a href="#" class="footer__link">Лэндинг</a>
+                </li>
+                <li class="footer__item">
+                <a href="#" class="footer__link">Функции</a>
+                </li>
+                <li class="footer__item">
+                <a href="#" class="footer__link">Документация</a>
+                </li>
+                <li class="footer__item">
+                <a href="#" class="footer__link">Скидки</a>
+                </li>
+                <li class="footer__item">
+                <a href="#" class="footer__link">Расценки</a>
+                </li>
+                </ul>
+                </div>*@
+                <!-- /.footer__products -->
+                @*<div class="footer__services">
+                <h4 class="footer__title">Сервисы</h4>
+                <ul class="footer__list">
+                <li class="footer__item">
+                <a href="#" class="footer__link">Документация</a>
+                </li>
+                <li class="footer__item">
+                <a href="#" class="footer__link">Дизайн</a>
+                </li>
+                <li class="footer__item">
+                <a href="#" class="footer__link">Темы</a>
+                </li>
+                <li class="footer__item">
+                <a href="#" class="footer__link">Илюстрации</a>
+                </li>
+                <li class="footer__item">
+                <a href="#" class="footer__link">UI Kit</a>
+                </li>
+                </ul>
+                </div>*@
+                <!-- /.footer__services -->
+                @*<div class="footer__company">
+                <h4 class="footer__title">Компания</h4>
+                <ul class="footer__list">
+                <li class="footer__item">
+                <a href="#" class="footer__link">О нас</a>
+                </li>
+                <li class="footer__item">
+                <a href="#" class="footer__link">Условия</a>
+                </li>
+                <li class="footer__item">
+                <a href="#" class="footer__link">Privacy Policy</a>
+                </li>
+                <li class="footer__item">
+                <a href="#" class="footer__link">Careers</a>
+                </li>
+                </ul>
+                </div>*@
+                <div class="footer__bottom">
+                    <i class="footer__icon footer__icon_big fas fa-heart"></i>
+                    <span class="footer__copyright">Copyright © 2024. Crafted with love.</span>
+                </div>
+                <!-- /.footer__bottom -->
+                <!-- /.footer__company -->
+                @*<div class="footer__else">
+                <h4 class="footer__title">Еще..</h4>
+                <ul class="footer__list">
+                <li class="footer__item">
+                <a href="#" class="footer__link">Документация</a>
+                </li>
+                <li class="footer__item">
+                <a href="#" class="footer__link">Лицензия</a>
+                </li>
+                <li class="footer__item">
+                <a href="#" class="footer__link">Изменения</a>
+                </li>
+                </ul>
+                </div>
+                <!-- /.footer__else -->*@
+            </div>
+            <!-- /.footer__wrap -->
+
+        </div>
+        <!-- /.container -->
+    </footer>
+
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/jquery.validate.min.js"></script>
+    <script src="~/lib/jquery-validation/dist/additional-methods.min.js"></script>
+    <script src="~/js/jquery.mask.min.js"></script>
+    <script src="~/js/swiper-bundle.min.js"></script>
+    <script src="~/js/jquery.fancybox.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+    <script src="~/js/main.js"></script>
+    @await RenderSectionAsync("Scripts", required: false)
+    @await Component.InvokeAsync("Notyf")
+</body>
+</html>

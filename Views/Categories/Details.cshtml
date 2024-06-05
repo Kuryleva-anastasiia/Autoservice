@@ -1,0 +1,18 @@
+﻿@model Autoservice.Models.Categories
+
+@{
+    ViewData["Title"] = "Детали";
+}
+
+<section class="login container">
+
+    <h1 class="form-title">Детали категории</h1>
+
+    <div>
+        <p><strong class="book__feature">@Html.DisplayNameFor(model => model.name):</strong><span>@Html.DisplayFor(model => model.name)</span></p>
+    </div>
+    <div>
+        <a class="admin__btn" asp-action="Edit" asp-route-id="@Model?.id">Редактировать</a>
+        <a class="form-link" asp-action="Index">Вернуться</a>
+    </div>
+</section>

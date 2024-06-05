@@ -1,0 +1,45 @@
+﻿@model IEnumerable<Autoservice.Models.Cart>
+
+@{
+    ViewData["Title"] = "Корзина";
+}
+
+<h1>Корзина</h1>
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.Services.name)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Services.duration)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Services.price)
+            </th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Services.name)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Services.duration)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Services.price)
+                </td>
+                <td>
+                    <a asp-action="Edit" asp-route-id="@item.id">Edit</a> |
+                    <a asp-action="Details" asp-route-id="@item.id">Details</a> |
+                    <a asp-action="Delete" asp-route-id="@item.id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

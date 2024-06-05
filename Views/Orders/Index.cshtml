@@ -1,0 +1,82 @@
+﻿@model IEnumerable<Autoservice.Models.Orders>
+
+@{
+    ViewData["Title"] = "Заказы";
+}
+
+<section class="login container">
+
+    <h1 class="form-title">Заказы</h1>
+        <form method="get">
+        <div class="sort">
+
+            <div class="form-group d-inline-block">
+                <label class="control-label">Сотрудник: </label>
+                <select class="form-control mr-30" name="name" asp-items="@ViewBag.employees"></select>
+            </div>
+
+            <input type="submit" value="Фильтр" class="btn btn-primary" />
+        </div>
+    </form>
+    <table class="table">
+        <thead>
+            <tr>
+                <th>
+                    @Html.DisplayNameFor(model => model.Clients.login)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Clients.name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.Employees.name)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.date)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.completeInDays)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.status)
+                </th>
+                <th>
+                    @Html.DisplayNameFor(model => model.sum)
+                </th>
+                <th></th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Clients.login)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Clients.name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.Employees.name)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.date)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.completeInDays)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.status)
+                    </td>
+                    <td>
+                        @Html.DisplayFor(modelItem => item.sum)
+                    </td>
+                    <td>
+                        <a class="form-link" asp-action="Edit" asp-route-id="@item.id">Редактировать</a> |
+                        <a class="form-link" asp-action="Details" asp-route-id="@item.id">Детали</a> |
+                        <a class="form-link" asp-action="Delete" asp-route-id="@item.id">Удалить</a>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</section>

@@ -1,0 +1,40 @@
+﻿@model IEnumerable<Autoservice.Models.Order_service>
+
+
+@{
+    ViewData["Title"] = "Услуги";
+}
+
+<section class="login container">
+
+    <h1 class="form-title">Услуги в заказе #@(Model.FirstOrDefault().order_id)</h1>
+
+    <div class="cart">
+
+        @foreach (var item in Model)
+        {
+            string id = item.Services.id.ToString();
+            string name = item.Services.name.ToString();
+            <a class="catalog-card__a" action="get" href="~/Books/Details/@id">
+                <div class="catalog__card" id="@(id)">
+                    <div class="cart-card__content products-card__content">
+                        @*<a action="get" href="~/Books/Details/@id">*@
+                        <h4 class="catalog__title products-card__title">
+                            @Html.DisplayFor(modelItem => item.Services.name)
+                        </h4>
+                        @*</a>*@
+                        <span class="catalog__author products-card__collection">@Html.DisplayFor(modelItem => item.Orders.Employees.name)</span>
+                        <span class="catalog__price products-card__price">@Html.DisplayFor(modelItem => item.Services.price) &#8381;</span>
+
+
+                    </div>
+                    <!-- /.products-card__content -->
+                </div>
+                <!-- /.products-card products__card -->
+            </a>
+        }
+
+
+
+    </div>
+</section>

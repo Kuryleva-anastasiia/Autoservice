@@ -1,0 +1,43 @@
+﻿@model Autoservice.Models.Employees
+
+<section class="login container">
+
+    <h1 class="form-title">Вход для сотрудников</h1>
+
+    <div class="row container">
+        <div class="col-md-4">
+            <form asp-action="Login">
+                <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+                <div class="form-group">
+                    <label asp-for="login" class="control-label"></label>
+                    <input asp-for="login" class="form-control" type="tel" minlength="11" maxlength="11"
+                           placeholder="Ваш телефон"
+                           pattern="[0-9]"
+                           required />
+                    <span asp-validation-for="login" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <label asp-for="password" class="control-label"></label>
+                    <input asp-for="password" class="form-control" type="password"
+                           placeholder="Ваш пароль" />
+                    <span asp-validation-for="password" class="text-danger"></span>
+                </div>
+                <div class="form-group">
+                    <input type="submit" value="Войти" class="btn btn-primary" />
+                </div>
+            </form>
+        </div>
+    </div>
+
+    <div>
+        <a class="form-link" href="~/Clients/Login">Вход для клиентов</a>
+        <a class="form-link" href="~/Clients/create">Регистрация</a>
+        <a class="form-link" href="~/home/index">Вернуться на главную страницу</a>
+    </div>
+</section>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

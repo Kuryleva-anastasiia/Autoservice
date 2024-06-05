@@ -1,0 +1,28 @@
+﻿@model Autoservice.Models.Services
+
+@{
+    ViewData["Title"] = "Delete";
+}
+
+<section class="login container">
+
+    <h1 class="form-title">Удаление книги</h1>
+
+    <h3 class="form-title">Вы уверены, что хотите удалить эту книгу?</h3>
+    <div>
+        <p><strong class="book__feature">@Html.DisplayNameFor(m => m.name):</strong><span>@Html.DisplayFor(m => m.name)</span></p>
+
+
+        <p><strong class="book__feature">@Html.DisplayNameFor(m => m.price):</strong><span>@Html.DisplayFor(m => m.price)</span></p>
+
+
+        <p><strong class="book__feature">@Html.DisplayNameFor(m => m.Categories.name):</strong><span>@Html.DisplayFor(m => m.Categories.name)</span></p>
+
+
+        <form asp-action="Delete">
+            <input type="hidden" asp-for="id" />
+            <input type="submit" value="Удалить" class="btn btn-danger btn-primary" />
+            <a href="~/Services/Details/@Model.id" class="form-link">Вернуться</a>
+        </form>
+    </div>
+</section>

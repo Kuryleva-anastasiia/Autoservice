@@ -1,0 +1,38 @@
+﻿@model IEnumerable<Autoservice.Models.Cart>
+
+
+<div class="login container">
+    <h1 class="form-title">Корзина</h1>
+
+
+    <div class="cart">
+
+        @foreach (var item in Model)
+        {
+            string id = item.service_id.ToString();
+            string name = item.Services.name.ToString();
+            <div class="catalog__card" id="@(id)">
+                <div class="cart-card__content products-card__content">
+                    <h4 class="catalog__title products-card__title">
+                        @Html.DisplayFor(modelItem => item.Services.name)
+                    </h4>
+                    <span class="catalog__desc">@Html.DisplayFor(modelItem => item.Services.description)</span>
+                    <span class="catalog__author products-card__collection">@Html.DisplayFor(modelItem => item.Services.duration) час(а)</span>
+                    <span class="catalog__price products-card__price">@Html.DisplayFor(modelItem => item.Services.price) &#8381;</span>
+                    <a href="~/cart/Delete/@(item.id)">
+                        <input type="submit" value="Удалить" class="button catalog__btn products-card__btn" />
+                    </a>
+                </div>
+                <!-- /.products-card__content -->
+            </div>
+            <!-- /.products-card products__card -->
+        }
+
+
+    </div>
+    <a href="~/CreateOrder">
+        <button class="button cart__btn catalog__btn products-card__btn">Оформить</button>
+    </a>
+
+
+</div>

@@ -1,0 +1,34 @@
+﻿@model Autoservice.Models.Employees
+
+@{
+    ViewData["Title"] = "Личный кабинет";
+}
+<section class="login container">
+
+    <h1 class="form-title form-title__mb60">Личный кабинет</h1>
+    @*<a href="~/Carts/Details/@(id)" class="cart-string">Корзина (@count)</a>*@
+
+    <div>
+        <ul class="navbar-nav flex-grow-1">
+            <li class="nav-item">
+                <a class="nav__link text-dark" action="get" href="~/Services/Index">Услуги</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav__link text-dark" action="get" href="~/Clients/Index">Клиенты</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav__link text-dark" action="get" href="~/Employees/Index">Сотрудники</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav__link text-dark" action="get" href="~/Orders/Index">Заказы</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav__link text-dark" action="get" href="~/Categories/Index">Категории услуг</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav__link text-dark" action="get" href="~/Employees/Analize">Отчеты</a>
+            </li>
+        </ul>
+    </div>
+    <hr />
+</section>
